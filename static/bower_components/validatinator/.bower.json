@@ -1,0 +1,34 @@
+{
+  "name": "validatinator",
+  "version": "1.1.2-beta",
+  "homepage": "https://github.com/JenkinsDev/Validatinator",
+  "authors": [
+    "David Jenkins <david.nicholas.jenkins@gmail.com>"
+  ],
+  "description": "Simple, yet effective, vanilla JavaScript form validation plugin. Validatinator is based off of one of PHP's most famous framework, Laravel.  Using Validatinator is as easy as instantiating a Validatinator object, calling the passes or fails methods and if there are failed validations then grabbing those validations from the errors property on the main object.",
+  "main": "validatinator.min.js",
+  "keywords": [
+    "forms",
+    "validations",
+    "form validation",
+    "vanilla"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "node_modules",
+    "js/tests",
+    "examples",
+    "index.html",
+    ".project"
+  ],
+  "_release": "1.1.2-beta",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.1.2-beta",
+    "commit": "622d6263cf8c583341432bf2b588faad7543768d"
+  },
+  "_source": "git://github.com/JenkinsDev/Validatinator.git",
+  "_target": "~1.1.2-beta",
+  "_originalSource": "validatinator",
+  "_direct": true
+}
