@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% for listing in listings %}
+    {{ listing.pk }}
+    <h2><a href="{{ listing.get_absolute_url() }}">{{ listing.title }}</a></h2>
+    <p>{{ listing.body }}</p>
+    <p>
+      {{ listing.format_created_at() }} |
+      {% with total=listing.comments|length %}
+        {{ total }} comment {%- if total > 1 %}s{%- endif -%}
+      {% endwith %}
+    </p>
+  {% endfor %}
+{% endblock %}

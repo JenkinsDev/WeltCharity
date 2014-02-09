@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block page_header %}
+  <div class="page-header">
+    <h1>{{ listing.title }}</h1>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <p>{{ listing.body }}<p>
+  <p>{{ listing.format_created_at() }}</p>
+  <hr>
+  <h2>Comments</h2>
+  {% if listing.comments %}
+    {% for comment in listing.comments %}
+       <p>{{ comment.body }}</p>
+       <p><strong>{{ comment.author }}</strong> <small>on {{ listing.format_created_at(comment.created_at) }}</small></p>
+      {{ comment.text }}
+    {% endfor %}
+  {% endif %}
+{% endblock %}
