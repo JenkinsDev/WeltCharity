@@ -19,6 +19,13 @@ class Listing(db.Document):
             return self.created_at.strftime('%m/%d/%Y')
         return time.strftime('%m/%d/%Y')
 
+    # We create a simple interface for grabbing the "featured" listings,
+    # the reason this interface was created is because we will have easy
+    # access to change what constitutes as a "featured" listing.
+    @classmethod
+    def get_featured_listings(cls, limit=5, orderby="-comments"):
+        return cls.objects.limit(limit).order_by(orderby)
+
     def __unicode__(self):
         return self.title
 

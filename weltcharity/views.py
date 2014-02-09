@@ -8,7 +8,7 @@ home = Blueprint('home', __name__, template_folder='../templates')
 
 class HomeView(MethodView):
     def get(self):
-        listings = Listing.objects.all()
+        listings = Listing.get_featured_listings()
         return render_template('home.html', listings=listings)
 
 
