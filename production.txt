@@ -1,0 +1,5 @@
+Things to remember when pushing code to a production environment:
+=================================================================
+
+1) The following python packages have been edited, by David Jenkins, for Python3.3.x support.
+    a) Flask-Bcrypt

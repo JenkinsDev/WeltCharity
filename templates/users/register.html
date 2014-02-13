@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <form method="POST" action="{{ request.url }}">
+    <label>
+      Username
+      <input type="text" name="username">
+    </label>
+    
+    <label>
+      Email
+      <input type="email" name="email">
+    </label>
+
+    <label>
+      Password
+      <input type="text" name="password">
+    </label>
+
+    <label>
+      Password Confirmation
+      <input type="text" name="password-conf">
+    </label>
+    <button type="submit">Login</button>
+  </form>
+{% endblock %}
