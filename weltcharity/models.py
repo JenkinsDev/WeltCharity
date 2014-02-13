@@ -50,6 +50,7 @@ class User(db.Document):
         for role in roles:
             if not self.has_role(role=role):
                 return False
+        return True
 
     def __unicode__(self):
         return self.username
