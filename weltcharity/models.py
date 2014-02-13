@@ -20,7 +20,7 @@ class User(db.Document):
         '''
         user = User.objects.get(username=username)
         if bcrypt.check_password_hash(user.password, password):
-            session.update({ 'id'=self.id, 'logged_in'=True })
+            session.update({ 'id': self.id, 'logged_in': True })
             return True
         return False
 
