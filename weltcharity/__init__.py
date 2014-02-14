@@ -28,10 +28,11 @@ class WeltCharity:
         else:
             self.bcrypt = Bcrypt(app)
 
-    # All blueprints are currently registered in a manual
-    # fashion.  The imports are added inside of a method so
-    # we do not have to worry about circular imports.
     def register_blueprints(self):
+        '''Handles the registration of all of our blueprints in a
+        manual fashion. Imports are added inside of this method so
+        we don't have to worry about circular imports.
+        '''
         from listings.views import listings
         from .views import base
         from admin.views import admin
