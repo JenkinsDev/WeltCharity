@@ -36,9 +36,11 @@ class WeltCharity:
         from listings.views import listings
         from .views import base
         from admin.views import admin
+        from users.views import users
         self.app.register_blueprint(listings)
         self.app.register_blueprint(base)
         self.app.register_blueprint(admin)
+        self.app.register_blueprint(users)
 
 
 welt_charity = WeltCharity(__name__, static_folder="../static/bower_components/", static_url_path="/static")

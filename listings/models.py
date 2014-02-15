@@ -1,7 +1,7 @@
 import datetime
 from flask import url_for
 from weltcharity import db
-from weltcharity.models import User
+from users.models import User
 
 import mongoengine
 

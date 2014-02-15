@@ -1,7 +1,7 @@
 from flask import session
 from mongoengine.errors import DoesNotExist, NotUniqueError
-from . import db, bcrypt
-from .settings import ROLES
+from weltcharity import db, bcrypt
+from weltcharity.settings import ROLES
 
 import datetime
 

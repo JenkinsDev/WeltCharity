@@ -1,7 +1,7 @@
 from flask import flash
 from mongoengine.errors import DoesNotExist, NotUniqueError
+from weltcharity import bcrypt
 from ..models import User, ContactInfo, Address
-from .. import bcrypt
 
 
 class UserFactory():
