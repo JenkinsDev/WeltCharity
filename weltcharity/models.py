@@ -1,4 +1,5 @@
 from flask import session
+from mongoengine.errors import DoesNotExist, NotUniqueError
 from . import db, bcrypt
 from .settings import ROLES
 
@@ -7,22 +8,19 @@ import datetime
 
 class User(db.Document):
     created_at = db.DateTimeField(default=datetime.datetime.now, required=True)
-    username = db.StringField(max_length=20, required=True)
+    first_name = db.StringField(max_length=35, required=False)
+    last_name = db.StringField(max_length=35, required=False)
+    username = db.StringField(max_length=35, required=True, unique=True)
+    email = db.EmailField(max_length=255, required=True, unique=True)
     password = db.StringField(max_length=255, required=True)
     contact = db.ListField(db.EmbeddedDocumentField('ContactInfo'))
     roles = db.ListField(db.StringField(max_length=255, required=False))
 
-    def log_user_in(self, username, password):
-        '''Attempts to log the user in.
-        
-        :param username: The string representation of the user.
-        :param password: The user's password or passphrase.
+    def set_users_logged_in_status(self):
+        '''Handles setting up our session data that will show that the user
+        has successfully become logged in.
         '''
-        user = User.objects.get(username=username)
-        if bcrypt.check_password_hash(user.password, password):
-            session.update({ 'id': self.id, 'logged_in': True })
-            return True
-        return False
+        session.update({ 'id': str(self.id), 'logged_in': True })
 
     def encrypt_password(self, rounds=10):
         '''Simply uses the bcrypt library that was initialized in the __init__.py file
@@ -32,6 +30,7 @@ class User(db.Document):
         :param rounds: The total amount of rounds to use when using the bcrypt password encryption
         '''
         self.password = bcrypt.generate_password_hash(self.password, rounds)
+        return self
 
     def has_role(self, role):
         '''Checks to see if a user has the supplied role.  Returns a boolean value;
@@ -52,6 +51,36 @@ class User(db.Document):
                 return False
         return True
 
+    @classmethod
+    def is_username_taken(cls, username):
+        '''Simple classmethod to see if we can grab a user by the
+        username provided.  If we can then we know the username is
+        already taken.
+
+        :param username: User's provided username.
+        '''
+        try:
+            cls.objects.get(username=username)
+        except DoesNotExist:
+            return False
+        else:
+            return True
+
+    @classmethod
+    def is_email_taken(cls, email):
+        '''Simple classmethod to see if we can grab a user by the
+        email address provided.  If we can then we know the email
+        address is already taken.
+
+        :param email: User's provided email address.
+        '''
+        try:
+            cls.objects.get(email=email)
+        except DoesNotExist:
+            return False
+        else:
+            return True
+
     def __unicode__(self):
         return self.username
 
@@ -63,7 +92,6 @@ class User(db.Document):
 
 
 class ContactInfo(db.EmbeddedDocument):
-    email = db.EmailField(max_length=255, required=True)
     phone = db.StringField(max_length=20, required=False)
     address = db.ListField(db.EmbeddedDocumentField('Address'))
 

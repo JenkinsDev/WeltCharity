@@ -9,19 +9,29 @@
   <body>
 
     {%- block topbar -%}
-    <div class="topbar">
-      <div class="fill">
-        <div class="container">
-          <h2>
-              <a href="/" class="brand">Welt Charity</a> <small>Hampton Road's Free Section</small>
-          </h2>
+      <div class="topbar">
+        <div class="fill">
+          <div class="container">
+            <h2>
+                <a href="/" class="brand">Welt Charity</a> <small>Hampton Road's Free Section</small>
+            </h2>
+          </div>
         </div>
       </div>
-    </div>
     {%- endblock -%}
 
     <div class="container">
       <div class="content">
+        {% with messages = get_flashed_messages(with_categories=True) %}
+          {% if messages %}
+            <ul class="flashes">
+              {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+        
         {% block page_header %}{% endblock %}
         {% block content %}{% endblock %}
       </div>
