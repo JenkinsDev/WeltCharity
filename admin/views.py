@@ -2,6 +2,7 @@ from flask import Blueprint, request, redirect, render_template, session, url_fo
 from flask.views import MethodView
 from listings.models import Listing, Comment
 from users.models import User, ContactInfo, Address
+from users.decorators import requires_user_logged_in, requires_role
 
 
 admin = Blueprint('admin', __name__, template_folder='../templates/admin')
@@ -11,6 +12,8 @@ class BaseAdminView(MethodView):
     and logging the user in as an admin.  We will require that users do have
     the admin role before allowing them into the admin dashboard.
     """
+    decorators = [requires_user_logged_in(), requires_role(role="admin")]
+
     def get(self):
         user_id = session.get('user_id')
         if not user_id:
