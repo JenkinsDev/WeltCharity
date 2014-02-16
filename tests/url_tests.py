@@ -19,3 +19,7 @@ class WeltCharityUrlTesting(BaseTestCase):
     def test__register_url_exists(self):
         response = self.tester_app.get('/register/', content_type='html/text')
         self.assertEqual(response.status_code, 200)
+
+    def test__settings_url_exists(self):
+        response = self.tester_app.get('/account/settings/', content_type='html/text')
+        self.assertEqual(response.status_code, 200)

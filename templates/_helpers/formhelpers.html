@@ -1,14 +1,18 @@
-{% macro render_field(field) %}
-  <div class="field {% if field.errors %}error{% endif %}">
+{% macro render_field(field, value=None) %}
+  <div class="field has-feedback {% if field.errors %}has-error{% endif %}">
     {% if field.errors %}
-      <ul class="errors">
+      <div class="errors">
         {%- for error in field.errors %}
-          <li>{{ error }}</li>
+          <p class="text-danger">{{ error }}</p>
         {% endfor %}
-      </ul>
+      </div>
     {% endif %}
     
     {{ field.label }}
-    {{ field(**kwargs)|safe }}
+    {% if value %}
+      {{ field(class_="form-control", value=value)|safe }}
+    {% else %}
+      {{ field(class_="form-control")|safe }}
+    {% endif %}
   </div>
 {% endmacro %}

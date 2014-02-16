@@ -8,19 +8,19 @@ import datetime
 
 class User(db.Document):
     created_at = db.DateTimeField(default=datetime.datetime.now, required=True)
-    first_name = db.StringField(max_length=35, required=False)
-    last_name = db.StringField(max_length=35, required=False)
+    first_name = db.StringField(max_length=255, required=False)
+    last_name = db.StringField(max_length=255, required=False)
     username = db.StringField(max_length=35, required=True, unique=True)
     email = db.EmailField(max_length=255, required=True, unique=True)
     password = db.StringField(max_length=255, required=True)
-    contact = db.ListField(db.EmbeddedDocumentField('ContactInfo'))
     roles = db.ListField(db.StringField(max_length=255, required=False))
+    contact_info = db.ListField(db.EmbeddedDocumentField('ContactInfo'))
 
     def set_users_logged_in_status(self):
         '''Handles setting up our session data that will show that the user
         has successfully become logged in.
         '''
-        session.update({ 'id': str(self.id), 'logged_in': True })
+        session.update({ 'ident': str(self.id), 'logged_in': True })
 
     def encrypt_password(self, rounds=10):
         '''Simply uses the bcrypt library that was initialized in the __init__.py file
@@ -92,15 +92,16 @@ class User(db.Document):
 
 
 class ContactInfo(db.EmbeddedDocument):
-    phone = db.StringField(max_length=20, required=False)
+    home_phone = db.StringField(max_length=20, required=False)
+    cell_phone = db.StringField(max_length=20, required=False)
     address = db.ListField(db.EmbeddedDocumentField('Address'))
 
     def __unicode__(self):
-        return self.email
+        return self.home_phone
 
     meta = {
         'allow_inheritance': True,
-        'indexes': ['email', 'phone']
+        'indexes': ['home_phone', 'cell_phone']
     }
 
 

@@ -15,7 +15,7 @@ class BaseAdminView(MethodView):
     decorators = [requires_user_logged_in(), requires_role(role="admin")]
 
     def get(self):
-        user_id = session.get('user_id')
+        user_id = session.get('ident')
         if not user_id:
             return redirect('login')
         return render_template('admin_base.html', user=User.objects.get(id=user_id))

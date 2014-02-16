@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% from "_helpers/formhelpers.html" import render_field %}
+
+{% block content %}
+  <form method="POST" action="{{ request.url }}">
+    {{ form.csrf_token }}
+    {{ render_field(form.username, value=user.username) }}
+    {{ render_field(form.email, value=user.email) }}
+    {{ render_field(form.first_name, value=user.first_name) }}
+    {{ render_field(form.last_name, value=user.last_name) }}
+    {{ render_field(form.home_phone, value=user.contact_info[0].home_phone) }}
+    {{ render_field(form.cell_phone, value=user.contact_info[0].cell_phone) }}
+    {{ render_field(form.address_one, value=user.contact_info[0].address[0].address_one) }}
+    {{ render_field(form.address_two, value=user.contact_info[0].address[0].address_two) }}
+    {{ render_field(form.city, value=user.contact_info[0].address[0].city) }}
+    {{ render_field(form.zip_code, value=user.contact_info[0].address[0].zip_code) }}
+    <button class="btn btn-primary btn-lg btn-block" type="submit">Save Settings</button>
+  </form>
+{% endblock %}

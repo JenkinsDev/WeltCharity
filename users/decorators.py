@@ -12,9 +12,9 @@ def requires_user_logged_in():
     """
     def decorator(fn):
         def inner(*args, **kwargs):
-            if session.get('logged_in') and session.get('id'):
+            if session.get('logged_in') and session.get('ident'):
                 try:
-                    user = User.objects.get(id=session.get('id'))
+                    user = User.objects.get(id=session.get('ident'))
                 except DoesNotExist:
                     return redirect(url_for('users.login'))
                 else:
@@ -43,7 +43,7 @@ def requires_role(role=None):
     """
     def decorator(f):
         def inner(*args, **kwargs):
-            user = User.objects.get(id=session.get('id'))
+            user = User.objects.get(id=session.get('ident'))
             if not user.has_role(role=role):
                 flash("You do not have the required permissions to access this area.", category="error")
                 return redirect(url_for('home.home'))
