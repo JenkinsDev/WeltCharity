@@ -2,33 +2,52 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Welt Charity</title>
-    <link href="http://localhost:5000/static/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <title>{%- block pagetitle -%}{%- endblock -%} | 757Charity</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://localhost:5000/static/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="http://localhost:5000/static/styles/main.css" rel="stylesheet">
   </head>
 
   <body>
 
     {%- block topbar -%}
-      <div class="topbar">
+      <header class="topbar">
         <div class="fill">
           <div class="container">
-            <h2>
-                <a href="/" class="brand">Welt Charity</a> <small>Hampton Road's Free Section</small>
-            </h2>
+            <h1>
+                <a href="/" class="brand">757charity</a> <small>Hampton Road's Free Section</small>
+            </h1>
+
+            <nav>
+              <ul class="visible-lg visible-md nav navbar-nav navbar-right">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Latest Listings</a></li>
+                <li><a href="#">Sponsors</a></li>
+                {% if session.logged_in %}
+                  <li id="fat-menu" class="dropdown">
+                    <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown">Account <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#">Settings</a></li>
+                      <li><a href="http://localhost:5000/logout">Log Out</a></li>
+                    </ul>
+                  </li>
+                {% endif %}
+              </ul>
+            </nav>
           </div>
         </div>
-      </div>
+      </header>
     {%- endblock -%}
 
     <div class="container">
       <div class="content">
         {% with messages = get_flashed_messages(with_categories=True) %}
           {% if messages %}
-            <ul class="flashes">
+            <div class="flashes">
               {% for category, message in messages %}
-                <li class="{{ category }}">{{ message }}</li>
+                <p class="bg-{{ category }}">{{ message }}</p>
               {% endfor %}
-            </ul>
+            </div>
           {% endif %}
         {% endwith %}
         
@@ -36,7 +55,11 @@
         {% block content %}{% endblock %}
       </div>
     </div>
+
     {% block js_footer %}{% endblock %}
-    <script type="text/javascript" src="http://localhost:5000/static/validatinator/js/validatinator.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://localhost:5000/static/bower_components/validatinator/js/validatinator.min.js"></script>
+    <script type="text/javascript" src="http://localhost:5000/static/bower_components/bootstrap/js/dropdown.js"></script>
+    <script type="text/javascript" src="http://localhost:5000/static/scripts/main.js"></script>
   </body>
 </html>

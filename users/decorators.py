@@ -41,12 +41,12 @@ def requires_role(role=None):
     you must ALWAYS call the requires_user_logged_in decorator first so you
     know the user is definitely logged in.
     """
-    def decorator(f):
+    def decorator(fn):
         def inner(*args, **kwargs):
             user = User.objects.get(id=session.get('ident'))
             if not user.has_role(role=role):
-                flash("You do not have the required permissions to access this area.", category="error")
+                flash("You do not have the required permissions to access this area.", category="danger")
                 return redirect(url_for('home.home'))
             return fn(*args, **kwargs)
-        return update_wrapper(inner, f)
+        return update_wrapper(inner, fn)
     return decorator

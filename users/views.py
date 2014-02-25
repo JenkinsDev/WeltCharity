@@ -33,7 +33,7 @@ class LoginView(View):
                 return redirect(url_for('home.home'))
             # If the user from above was not signed in then we will get to here and
             # we know the user failed to login, time to let the user know they failed.
-            flash("Username/Email or Password is incorrect.")
+            flash("Username/Email or Password is incorrect.", category="danger")
         return render_template('login.html', form=self.form)
 
 

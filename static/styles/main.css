@@ -1,0 +1,66 @@
+/********************************************************
+ *                  Table Of Contents
+ *
+ *  1.) Header/Navbar
+ *  2.) Flashes
+ *  3.) Content Area
+ *  4.) Footer
+ *
+ *
+ */
+
+body {
+    background-color: #EEF2F5;
+}
+
+/*****************************
+ *      HEADER/NAVBAR
+ */
+header {
+    background-color: #373E49;
+    height: 76px;
+}
+
+header h1, header h1 a {
+    float: left;
+    color: #fff;
+    transition: color 1s;
+    -webkit-transition: color 1s;
+    -o-transition: color 1s;
+    -moz-transition: color 1s;
+}
+
+header h1 a:hover {
+    text-decoration: none;
+    color: #A2B1BA;
+}
+
+ul.nav li a {
+    color: #ffffff;
+}
+
+ul.nav li a {
+    padding: 28px 15px;
+    background-color: #373E49 !important;
+    border-right: 1px solid #626C7F;
+    transition: background-color .5s;
+    -webkit-transition: background-color .5s;
+    -o-transition: background-color .5s;
+    -moz-transition: background-color .5s;
+}
+
+ul.nav li:last-child a {
+    border-right: none;
+}
+
+ul.nav li a:hover, ul.nav .open > a {
+    background-color: #626C7F !important;
+}
+
+
+/***************************
+ *      FLASHES
+ */
+.flashes > p {
+    padding: 15px;
+}

@@ -50,7 +50,7 @@ class WeltCharity:
         self.app.register_blueprint(users)
 
 
-welt_charity = WeltCharity(__name__, static_folder="../static/bower_components/", static_url_path="/static")
+welt_charity = WeltCharity(__name__, static_folder="../static/", static_url_path="/static")
 welt_charity.setAppConfig(MONGODB_SETTINGS=DATABASE_SETTINGS, SECRET_KEY=SEC_KEY)
 welt_charity.setDB()
 welt_charity.setBcrypt()

@@ -7,6 +7,15 @@ import re
 
 
 def validate_phone(form, field):
+    """ Simple validation for checking to see if the user has
+    submitted a valid Phone Number. Checks to see if there is any
+    user submitted data and if there is then we check to make sure it's
+    a valid phone number.
+
+    :param form: Form data that the field we are validating against
+                 exists within.
+    :param field: Field data that we will be validating against.
+    """
     result = re.match(r'1?\W*([2-9][0-8][0-9])\W*([2-9][0-9]{2})\W*([0-9]{4})(\se?x?t?(\d*))?', field.data)
     if len(field.data) > 0 and not result:
     	raise validators.ValidationError('Phone must be a valid phone number')

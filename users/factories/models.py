@@ -62,9 +62,9 @@ class UserFactory():
             user.save()
         except NotUniqueError:
             if User.is_username_taken(username=username):
-                flash("The username that you provided has already been taken.", category="error")
+                flash("The username that you provided has already been taken.", category="danger")
             if User.is_email_taken(email=email):
-                flash("The email address that you provided has already been taken.", category="error")
+                flash("The email address that you provided has already been taken.", category="danger")
             return False
         else:
             return user
