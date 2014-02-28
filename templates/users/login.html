@@ -4,7 +4,7 @@
 {% block content %}
   <form method="POST" action="{{ request.url }}">
     {{ form.csrf_token }}
-    {{ render_field(form.username_or_email) }}
+    {{ render_field(form.username_or_email, value=form.username_or_email.data) }}
     {{ render_field(form.password) }}
     <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
   </form>

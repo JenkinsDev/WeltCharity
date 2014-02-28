@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 
-{% block page_header %}
-  <h3>Featured Listings</h3>
-{% endblock %}
+{%- block pagetitle -%}Home{%- endblock -%}
 
 {% block content %}
-  {%- for listing in listings %}
-    <article>
-      <h4>{{ listing.title }}</h4>
-      <p>{{ listing.body }}</p>
-    </article>
-  {% endfor %}
+  <div class="home-hero-image">
+    <div class="container">
+      <div class="not-logged-in">
+        <h3>We are here to help YOU give and retrieve even the smallest things in life.</h3>
+      </div>
+    </div>
+  </div>
 {% endblock %}
