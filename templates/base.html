@@ -5,8 +5,8 @@
     <title>{%- block pagetitle -%}{%- endblock -%}&nbsp;| 757Charity</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
-    <link href="http://localhost:5000/static/css/main.css" rel="stylesheet">
-    <script type="text/javascript" src="http://localhost:5000/static/bower_components/modernizr/modernizr.js"></script>
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+    <script type="text/javascript" src="{{ url_for('static', filename='bower_components/modernizr/modernizr.js') }}"></script>
   </head>
 
   <body>
@@ -64,11 +64,10 @@
     <!-- Footer content -->
     {% block js_footer %}{% endblock %}
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="http://localhost:5000/static/bower_components/validatinator/js/validatinator.min.js"></script>
-    <script type="text/javascript" src="http://localhost:5000/static/bower_components/foundation/js/foundation.min.js"></script>
-    <script type="text/javascript" src="http://localhost:5000/static/bower_components/modernizr/modernizr.js"></script>
-    <script type="text/javascript" src="http://localhost:5000/static/bower_components/fastclick/fastclick.js"></script>
-    <script type="text/javascript" src="http://localhost:5000/static/scripts/main.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='bower_components/validatinator/js/validatinator.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='bower_components/foundation/js/foundation.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='bower_components/fastclick/lib/fastclick.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/main.js') }}"></script>
     <!-- End footer content -->
   </body>
 </html>
