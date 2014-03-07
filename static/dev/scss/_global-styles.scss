@@ -1,0 +1,3 @@
+.content-center {
+    @include grid-column(10, $center: true);
+}
