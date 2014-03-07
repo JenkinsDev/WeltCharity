@@ -1,8 +1,16 @@
 .top-bar {
     h1 {
         a {
-            padding: 0;
-            margin: 0;
+          font-size: 30px;
+          padding: 0;
+          margin: 0;
         }
     }
+}
+
+// Flash Boxes
+.flashes {
+  p {
+    margin-bottom: 0;
+  }
 }

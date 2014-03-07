@@ -1,9 +1,10 @@
+@import "../../bower_components/foundation/scss/foundation/functions",
+        "settings";
+
 // Import Core Foundation Functions and SCSS components.
-@import "../../bower_components/foundation/scss/foundation",
-        "../../bower_components/foundation/scss/foundation/functions";
+@import "../../bower_components/foundation/scss/foundation";
 
 // Import WeltCharity Specific SCSS files.
-@import "settings",
-        "mixins",
+@import "mixins",
         "global-styles",
         "layout";
