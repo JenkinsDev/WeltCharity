@@ -6,38 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
     <link href="http://localhost:5000/static/css/main.css" rel="stylesheet">
+    <script type="text/javascript" src="http://localhost:5000/static/bower_components/modernizr/modernizr.js"></script>
   </head>
 
   <body>
     <!-- Header/navbar content -->
     {%- block topbar -%}
-      <header class="topbar">
-        <div class="fill">
-          <div class="container">
-            <h1><a href="/" class="brand">757charity</a></h1>
+      <nav class="top-bar" data-topbar>
+        <ul class="title-area">
+          <li class="name">
+            <h1><a href="http://localhost:5000/">757charity</a></h1>
+          </li>
+          <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+        </ul>
 
-            <nav>
-              <ul class="visible-lg visible-md nav navbar-nav navbar-right">
-                <li><a href="http://localhost:5000/">Home</a></li>
-                <li><a href="#">Latest Listings</a></li>
-                <li><a href="#">Sponsors</a></li>
-                {% if session.logged_in %}
-                  <li id="fat-menu" class="dropdown">
-                    <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown">Account <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="http://localhost:5000/account/settings/">Settings</a></li>
-                      <li><a href="http://localhost:5000/logout/">Log Out</a></li>
-                    </ul>
-                  </li>
-                {% else %}
-                  <li><a href="http://localhost:5000/login/">Log In</a></li>
-                  <li><a href="http://localhost:5000/register/">Register</a></li>
-                {% endif %}
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </header>
+        <section class="top-bar-section">
+          <ul class="right">
+            <li class="active"><a href="http://localhost:5000/">Home</a></li>
+            <li><a href="#">Latest Listings</a></li>
+            <li><a href="#">Sponsors</a></li>
+            {% if session.logged_in %}
+              <li class="has-dropdown">
+                <a href="#">Account <span class="caret"></span></a>
+                <ul class="dropdown">
+                  <li><a href="http://localhost:5000/account/settings/">Settings</a></li>
+                  <li><a href="http://localhost:5000/logout/">Log Out</a></li>
+                </ul>
+              </li>
+            {% else %}
+              <li><a href="http://localhost:5000/login/">Log In</a></li>
+              <li><a href="http://localhost:5000/register/">Register</a></li>
+            {% endif %}
+          </ul>
+        </section>
+      </nav>
     {%- endblock -%}
     <!-- End header/navbar content -->
 
@@ -63,7 +65,9 @@
     {% block js_footer %}{% endblock %}
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="http://localhost:5000/static/bower_components/validatinator/js/validatinator.min.js"></script>
-    <script type="text/javascript" src="http://localhost:5000/static/bower_components/bootstrap/js/dropdown.js"></script>
+    <script type="text/javascript" src="http://localhost:5000/static/bower_components/foundation/js/foundation.min.js"></script>
+    <script type="text/javascript" src="http://localhost:5000/static/bower_components/modernizr/modernizr.js"></script>
+    <script type="text/javascript" src="http://localhost:5000/static/bower_components/fastclick/fastclick.js"></script>
     <script type="text/javascript" src="http://localhost:5000/static/scripts/main.js"></script>
     <!-- End footer content -->
   </body>
