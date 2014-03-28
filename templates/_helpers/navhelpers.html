@@ -1,7 +1,18 @@
 {% macro nav_link(endpoint, name) %}
     {%- if url_for(endpoint) == request.script_root + request.path -%}
-        <a class="active" href="{{ url_for(endpoint) }}">{{ name }}</a>
+        <li class="active"><a href="{{ url_for(endpoint) }}">{{ name }}</a></li>
     {%- else -%}
-        <a href="{{ url_for(endpoint) }}">{{ name }}</a>
+        <li><a href="{{ url_for(endpoint) }}">{{ name }}</a></li>
     {%- endif -%}
+{% endmacro %}
+
+{% macro multi_tiered_nav(top_level_name, dict_names_and_endpoints) %}
+    <li class="has-dropdown">
+        <a href="#">{{ top_level_name }} <span class="caret"></span></a>
+        <ul class="dropdown">
+            {% for name, endpoint in dict_names_and_endpoints.items() %}
+                {{ nav_link(endpoint, name) }}
+            {% endfor %}
+        </ul>
+    </li>
 {% endmacro %}

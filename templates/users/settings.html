@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% from "_helpers/formhelpers.html" import render_field %}
 
+{%- block pagetitle -%}User Settings{%- endblock -%}
+
 {% block content %}
   <form method="POST" action="{{ request.url }}">
     {{ form.csrf_token }}

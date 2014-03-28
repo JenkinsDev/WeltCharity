@@ -1,3 +1,5 @@
+{% from "_helpers/navhelpers.html" import nav_link, multi_tiered_nav %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -27,21 +29,15 @@
 
           <nav class="top-bar-section">
             <ul class="right">
-              <li class="active"><a href="{{ url_for('home.home') }}">Home</a></li>
+              {{ nav_link('home.home', 'Home') }}
               <li><a href="#">Latest Listings</a></li>
               <li><a href="#">Sponsors</a></li>
 
               {% if session.logged_in %}
-                <li class="has-dropdown">
-                  <a href="#">Account <span class="caret"></span></a>
-                  <ul class="dropdown">
-                    <li><a href="{{ url_for('users.settings') }}">Settings</a></li>
-                    <li><a href="{{ url_for('users.logout') }}">Log Out</a></li>
-                  </ul>
-                </li>
+                {{ multi_tiered_nav('Account', { 'Settings': 'users.settings', 'Log Out': 'users.logout' }) }}
               {% else %}
-                <li><a href="{{ url_for('users.login') }}">Log In</a></li>
-                <li><a href="{{ url_for('users.register') }}">Register</a></li>
+                {{ nav_link('users.login', 'Log In') }}
+                {{ nav_link('users.register', 'Register') }}
               {% endif %}
             </ul>
           </nav>
