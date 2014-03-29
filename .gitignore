@@ -1,3 +1,5 @@
 ./static/dev/tools/grunt/.sass-cache
+./**/__pycache__
+./**/**/__pycache__
 .DS_Store
 newrelic.ini
