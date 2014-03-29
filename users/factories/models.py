@@ -16,14 +16,12 @@ class UserFactory():
 
         :param id: User's id.
         '''
-        # Here we set the user to None as we will be returning the user
-        # at the end. This will help stop the raising of certain exceptions.
-        user = None
         try:
             user = User.objects.get(id=id)
         except DoesNotExist:
             flash("Error: Failed to access your user information, please logout and try again. Sorry for the inconvenience.", category="warning")
-        return user
+        else:
+            return user
 
     @staticmethod
     def log_user_in(username_or_email, password):
@@ -61,10 +59,6 @@ class UserFactory():
             user.contact_info[0].address = [Address()]
             user.save()
         except NotUniqueError:
-            if User.is_username_taken(username=username):
-                flash("The username that you provided has already been taken.", category="danger")
-            if User.is_email_taken(email=email):
-                flash("The email address that you provided has already been taken.", category="danger")
             return False
         else:
             return user

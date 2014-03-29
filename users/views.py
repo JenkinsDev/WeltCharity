@@ -9,7 +9,6 @@ from .factories.models import UserFactory
 from .decorators import requires_user_not_logged_in, requires_user_logged_in
 
 
-
 users = Blueprint('users', __name__, template_folder='../templates/users')
 
 class LoginView(View):
@@ -21,7 +20,7 @@ class LoginView(View):
 
     def __init__(self):
         self.form = LoginForm(request.form)
-    
+
     def dispatch_request(self):
         if request.method == 'POST' and self.form.validate_on_submit():
             user = UserFactory.log_user_in(
@@ -91,14 +90,17 @@ class SettingsView(View):
                 contact_info = ContactInfo(
                         home_phone=self.form.home_phone.data,
                         cell_phone=self.form.cell_phone.data
-                )
+                    )
                 address = Address(
                         address_one=self.form.address_one.data,
                         address_two=self.form.address_two.data,
                         city=self.form.city.data,
                         zip_code=self.form.zip_code.data
                     )
-                self.user = User.objects.get(id=session.get('ident'))
+                self.user.username = self.form.username.data
+                self.user.first_name = self.form.first_name.data
+                self.user.last_name = self.form.last_name.data
+                self.user.email = self.form.email.data
                 # After getting out user we set the contact info and address data
                 # but we need to make sure to set our data to the first element
                 # in the list.  We will be adding support for multiple phones and

@@ -37,7 +37,7 @@ class User(db.Document):
         true if the user does have the role, else false.
 
         :param role: String identifier for a specific role.
-        '''    
+        '''
         return ROLES[role] in self.roles
 
     def has_roles(self, roles):
@@ -63,8 +63,17 @@ class User(db.Document):
             cls.objects.get(username=username)
         except DoesNotExist:
             return False
-        else:
-            return True
+        return True
+
+    @classmethod
+    def is_this_current_users_username(cls, username):
+        '''Checks to see if the username provided is the currently logged
+        in user's username.
+
+        :param username: User's provided username.
+        '''
+        user = cls.objects.get(username=username)
+        return cls.is_this_the_current_users_id(user.id)
 
     @classmethod
     def is_email_taken(cls, email):
@@ -78,8 +87,21 @@ class User(db.Document):
             cls.objects.get(email=email)
         except DoesNotExist:
             return False
-        else:
-            return True
+        return True
+
+    @classmethod
+    def is_this_current_users_email(cls, email):
+        '''Checks to see if the email provided is the currently logged
+        in user's email address.
+
+        :param email: User's provided email address.
+        '''
+        user = cls.objects.get(email=email)
+        return cls.is_this_the_current_users_id(user.id)
+
+    @staticmethod
+    def is_this_the_current_users_id(user_id):
+        return str(user_id) == session.get('ident')
 
     def __unicode__(self):
         return self.username
