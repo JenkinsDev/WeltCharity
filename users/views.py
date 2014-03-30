@@ -12,9 +12,9 @@ from .decorators import requires_user_not_logged_in, requires_user_logged_in
 users = Blueprint('users', __name__, template_folder='../templates/users')
 
 class LoginView(View):
-    """LoginView handles the GET and POST requests.  This View is considered a normal
+    '''LoginView handles the GET and POST requests.  This View is considered a normal
     view over a MethodView to help cut down on the repetition of code.  Less boilerplate.
-    """
+    '''
     methods = ['GET', 'POST']
     decorators = [requires_user_not_logged_in()]
 
@@ -37,10 +37,10 @@ class LoginView(View):
 
 
 class RegisterView(View):
-    """RegisterView handles the GET and POST data when handling registration requests.
+    '''RegisterView handles the GET and POST data when handling registration requests.
     This View is considered a normal view over a MethodView to help cut down on the
     repetition of code.
-    """
+    '''
     methods = ['GET', 'POST']
     decorators = [requires_user_not_logged_in()]
 
@@ -60,9 +60,9 @@ class RegisterView(View):
 
 
 class LogoutView(View):
-    """LogoutView only allows access via a GET request and simply terminates the session
+    '''LogoutView only allows access via a GET request and simply terminates the session
     stating the user is logged in.
-    """
+    '''
     decorators = [requires_user_logged_in()]
 
     def dispatch_request(self):
@@ -75,8 +75,8 @@ class LogoutView(View):
 
 
 class SettingsView(View):
-    """SettingsView handles accessing the form to view and change your user settings.
-    """
+    '''SettingsView handles accessing the form to view and change your user settings.
+    '''
     methods = ['GET', 'POST']
     decorators = [requires_user_logged_in()]
 

@@ -5,6 +5,7 @@ from .models import Listing, Comment
 
 listings = Blueprint('listings', __name__, template_folder='../templates/listings')
 
+
 class LatestView(MethodView):
     def get(self):
         listings = Listing.objects.all()
@@ -16,7 +17,6 @@ class DetailView(MethodView):
         listing = Listing.objects.get_or_404(id=id)
         return render_template('detail.html', listing=listing)
 
-
 # Register the urls
-listings.add_url_rule('/latest/', view_func=LatestView.as_view('latest'))
-listings.add_url_rule('/<id>/', view_func=DetailView.as_view('details'))
+listings.add_url_rule('/listings/latest/', view_func=LatestView.as_view('latest'))
+listings.add_url_rule('/listing/<id>/', view_func=DetailView.as_view('details'))

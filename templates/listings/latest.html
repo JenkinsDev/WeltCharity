@@ -1,15 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-  {% for listing in listings %}
-    {{ listing.pk }}
-    <h2><a href="{{ listing.get_absolute_url() }}">{{ listing.title }}</a></h2>
-    <p>{{ listing.body }}</p>
-    <p>
-      {{ listing.format_created_at() }} |
-      {% with total=listing.comments|length %}
-        {{ total }} comment {%- if total > 1 %}s{%- endif -%}
-      {% endwith %}
-    </p>
-  {% endfor %}
+  <section id="latest-listings">
+    {% for listing in listings %}
+      <article class="listing">
+        <h2><a href="{{ listing.get_absolute_url() }}">{{ listing.title }}</a></h2>
+        <p>{{ listing.body }}</p>
+
+        <div class="listing-footer">
+          <span class="date">{{ listing.format_created_at() }}</span>
+          <span class="comments-amount">
+            {% with total=listing.comments|length %}
+              {{ total }} comment {%- if total > 1 %}s{%- endif -%}
+            {% endwith %}
+          </span>
+        </div>
+      </article>
+    {% endfor %}
+  </section>
 {% endblock %}

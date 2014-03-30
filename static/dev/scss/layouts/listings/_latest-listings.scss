@@ -1,0 +1,9 @@
+#latest-listings {
+    .listing {
+        .date {
+            &:after {
+                content: " | ";
+            }
+        }
+    }
+}

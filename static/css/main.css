@@ -9414,14 +9414,14 @@ th.hide-for-touch {
   float: none !important;
 }
 
-/* line 3, ../dev/scss/_layout.scss */
+/* line 3, ../dev/scss/layouts/_header.scss */
 .top-bar h1 a {
   font-size: 30px;
   padding: 0;
   margin: 0;
 }
 
-/* line 13, ../dev/scss/_layout.scss */
-.flashes p {
-  margin-bottom: 0;
+/* line 4, ../dev/scss/layouts/listings/_latest-listings.scss */
+#latest-listings .listing .date:after {
+  content: " | ";
 }
