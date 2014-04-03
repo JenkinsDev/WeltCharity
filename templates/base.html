@@ -30,7 +30,7 @@
           <nav class="top-bar-section">
             <ul class="right">
               {{ nav_link('home.home', 'Home') }}
-              <li><a href="#">Latest Listings</a></li>
+              {{ nav_link('listings.latest', 'Latest Listings') }}
               <li><a href="#">Sponsors</a></li>
 
               {% if session.logged_in %}
